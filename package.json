@@ -25,6 +25,11 @@
           "type": "string",
           "default": ".venv",
           "description": "Path to the Python virtual environment folder. E.g., '.venv' or 'env'."
+        },
+        "autoactivatevenv.clearScreen": {
+          "type": "boolean",
+          "default": true,
+          "description": "Clear the terminal screen after activating the virtual environment."
         }
       }
     }
