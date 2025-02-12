@@ -1,0 +1,24 @@
+{
+	"compilerOptions": {
+	  "module": "Node16",               // Use Node16 module system
+	  "target": "ES2022",               // Use ES2022 features
+	  "outDir": "out",                  // Output directory for compiled files
+	  "lib": [
+		"ES2022"                        // Include ES2022 standard library
+	  ],
+	  "sourceMap": true,                // Generate source maps for debugging
+	  "rootDir": "src",                 // Root directory for source files
+	  "strict": true,                   // Enable strict type checking
+	  "esModuleInterop": true,          // Allow default imports for modules without a default export
+	  "skipLibCheck": true,             // Skip library checking for faster compilation
+	  "forceConsistentCasingInFileNames": true, // Ensure consistent file name casing across the project
+	  "moduleResolution": "Node16"      // Ensure Node16 module resolution
+	},
+	"include": [
+	  "src/**/*.ts"                     // Include all .ts files under 'src'
+	],
+	"exclude": [
+	  "node_modules"                    // Exclude node_modules folder
+	]
+  }
+  
