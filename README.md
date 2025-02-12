@@ -34,7 +34,3 @@ To change the path, go to your **User Settings** in Visual Studio Code and add t
 
 - **Windows**: The extension uses the command `Scripts\\activate` to activate the virtual environment.
 - **Linux/macOS**: The extension uses the command `source bin/activate` to activate the virtual environment.
-
-## Developer
-
-This extension was developed by [Your Name]. If you have suggestions or bug reports, please open an issue or submit a pull request on the [GitHub Repository Link].
