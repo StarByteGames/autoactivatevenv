@@ -2,7 +2,7 @@
   "name": "autoactivatevenv",
   "displayName": "AutoActivateVenv",
   "description": "Automatically activates virtual environments (venv) when a workspace or folder is opened.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publisher": "starcrusher2025",
   "icon": "images/AutoActivateVenv.png",
   "engines": {
