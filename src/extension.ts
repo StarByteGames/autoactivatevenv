@@ -5,25 +5,21 @@ import * as fs from 'fs';
 
 export function activate() {
     const config = vscode.workspace.getConfiguration('autoactivatevenv');
-    const venvPath = config.get<string>('venvPath', '.venv');
     const isWindows = os.platform() === 'win32';
-    
-    const workspaceFolder = vscode.workspace.workspaceFolders?.[0].uri.fsPath || '';
-    const absoluteVenvPath = path.isAbsolute(venvPath) ? venvPath : path.join(workspaceFolder, venvPath);
     
     const activateVenvInTerminal = (terminal: vscode.Terminal, clearScreen: boolean) => {
         const venvPath = config.get<string>('venvPath', '.venv');
-
-        if (fs.existsSync(absoluteVenvPath)) {
+        
+        if (fs.existsSync(path.isAbsolute(venvPath) ? venvPath : path.join(vscode.workspace.workspaceFolders?.[0].uri.fsPath || '', venvPath))) {
             if (isWindows) {
                 sendCommandToTerminal(terminal, `${venvPath}\\Scripts\\activate`);
-
+                
                 if (clearScreen) {
                     sendCommandToTerminal(terminal, 'cls');
                 }
             } else {
                 sendCommandToTerminal(terminal, `source ${venvPath}/bin/activate`);
-
+                
                 if (clearScreen) {
                     sendCommandToTerminal(terminal, 'clear');
                 }
@@ -34,9 +30,10 @@ export function activate() {
     vscode.window.terminals.forEach(terminal => {
         activateVenvInTerminal(terminal, false);
     });
-
+    
     vscode.window.onDidOpenTerminal((terminal) => {
-        activateVenvInTerminal(terminal,  vscode.workspace.getConfiguration('autoactivatevenv').get<boolean>('clearScreen', true));
+        const config = vscode.workspace.getConfiguration('autoactivatevenv');
+        activateVenvInTerminal(terminal,  config.get<boolean>('clearScreen', true));
     });
 }
 
