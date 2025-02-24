@@ -10,12 +10,9 @@ export function activate() {
     
     const workspaceFolder = vscode.workspace.workspaceFolders?.[0].uri.fsPath || '';
     const absoluteVenvPath = path.isAbsolute(venvPath) ? venvPath : path.join(workspaceFolder, venvPath);
-    const isVenvExist = fs.existsSync(absoluteVenvPath);
     
-    const clearScreen = config.get<boolean>('clearScreen', true);
-
     const activateVenvInTerminal = (terminal: vscode.Terminal, clearScreen: boolean) => {
-        if (isVenvExist) {
+        if (fs.existsSync(absoluteVenvPath)) {
             if (isWindows) {
                 sendCommandToTerminal(terminal, `${venvPath}\\Scripts\\activate`);
 
@@ -37,7 +34,7 @@ export function activate() {
     });
 
     vscode.window.onDidOpenTerminal((terminal) => {
-        activateVenvInTerminal(terminal, clearScreen);
+        activateVenvInTerminal(terminal, config.get<boolean>('clearScreen', true));
     });
 }
 
