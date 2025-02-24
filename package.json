@@ -13,7 +13,8 @@
     "Other"
   ],
   "activationEvents": [
-    "onDidOpenTerminal"
+    "onStartupFinished",
+    "workspaceContains:venv"
   ],
   "main": "./out/extension.js",
   "contributes": {
