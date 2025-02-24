@@ -33,7 +33,7 @@ export function activate() {
     
     vscode.window.onDidOpenTerminal((terminal) => {
         const config = vscode.workspace.getConfiguration('autoactivatevenv');
-        activateVenvInTerminal(terminal,  config.get<boolean>('clearScreen', true));
+        activateVenvInTerminal(terminal, config.get<boolean>('clearScreen', true));
     });
 }
 
