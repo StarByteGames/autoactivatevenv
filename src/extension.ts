@@ -40,3 +40,8 @@ export function activate() {
 function sendCommandToTerminal(terminal: vscode.Terminal, command: string) {
     terminal.sendText(command);
 }
+
+// vsce package
+// vsce publish patch
+// vsce publish minor
+// vsce publish major 
