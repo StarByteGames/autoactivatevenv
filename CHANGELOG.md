@@ -1,9 +1,34 @@
-# Change Log
+# Changelog
 
-All notable changes to the "autoactivatevenv" extension will be documented in this file.
+## [1.4.0] - 2025-02-24
+### Changed
+- Activation events were updated to trigger when the terminal is opened.
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
+## [1.3.2] - 2025-02-23
+### No changes documented.
 
-## [Unreleased]
+## [1.3.1] - 2025-02-20
+### Changed
+- `venvPath` is now directly retrieved from the configuration in the `activateVenvInTerminal` function.
 
-- Initial release
+## [1.3.0] - 2025-02-19
+### Changed
+- Refactored the `activateVenvInTerminal` function to directly check for the virtual environment's existence and dynamically retrieve the `clearScreen` option.
+- Passed the `clearScreen` option to the `activateVenvInTerminal` function.
+
+## [1.2.0] - 2025-02-18
+### Added
+- Added the `clearScreen` option to the `autoactivatevenv` configuration.
+
+## [1.1.0] - 2025-02-17
+### Changed
+- Checked if the virtual environment exists before activation in the terminal.
+
+## [1.0.1] - 2025-02-15
+### Added
+- Added `icon` property to `package.json`.
+
+## [1.0.0] - 2025-02-14
+### Added
+- Initial commit.
+- Added MIT license and updated `README` and `package.json`.
