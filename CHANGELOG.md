@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.5.0] - 2025-02-24
+### Changed
+- Updated activation events to trigger when the terminal is opened.
+- Enhanced virtual environment setup on terminal open.
+
 ## [1.4.2] - 2025-02-24
 ### No changes documented.
 
