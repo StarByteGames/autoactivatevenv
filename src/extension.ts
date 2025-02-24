@@ -14,7 +14,7 @@ export function activate() {
     
     const clearScreen = config.get<boolean>('clearScreen', true);
 
-    const activateVenvInTerminal = (terminal: vscode.Terminal) => {
+    const activateVenvInTerminal = (terminal: vscode.Terminal, clearScreen: boolean) => {
         if (isVenvExist) {
             if (isWindows) {
                 sendCommandToTerminal(terminal, `${venvPath}\\Scripts\\activate`);
@@ -33,11 +33,11 @@ export function activate() {
     };
 
     vscode.window.terminals.forEach(terminal => {
-        activateVenvInTerminal(terminal);
+        activateVenvInTerminal(terminal, false);
     });
 
     vscode.window.onDidOpenTerminal((terminal) => {
-        activateVenvInTerminal(terminal);
+        activateVenvInTerminal(terminal, clearScreen);
     });
 }
 
