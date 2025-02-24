@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.2] - 2025-02-24
+### No changes documented.
+
+## [1.4.1] - 2025-02-24
+### Changed
+- added Changelog
+
 ## [1.4.0] - 2025-02-24
 ### Changed
 - Activation events were updated to trigger when the terminal is opened.
