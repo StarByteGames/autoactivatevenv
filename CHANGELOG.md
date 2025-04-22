@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.5.1] - 2025-04-22
+### Changed
+- Updated General info.
+
 ## [1.5.0] - 2025-02-24
 ### Changed
 - Updated activation events to trigger when the terminal is opened.
