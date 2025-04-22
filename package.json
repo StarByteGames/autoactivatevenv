@@ -3,7 +3,7 @@
   "displayName": "AutoActivateVenv",
   "description": "Automatically activates virtual environments (venv) when a workspace or folder is opened.",
   "version": "1.5.0",
-  "publisher": "starcrusher2025",
+  "publisher": "DevStarByte",
   "icon": "images/AutoActivateVenv.png",
   "engines": {
     "vscode": "^1.97.0"
