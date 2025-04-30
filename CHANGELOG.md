@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.6.0] - 2025-04-30
+### Changed
+- Updated Change Log
+- Closing venv creation terminal
+
 ## [1.5.1] - 2025-04-22
 ### Changed
 - Updated General info.
@@ -43,8 +48,8 @@
 ## [1.0.1] - 2025-02-15
 ### Added
 - Added `icon` property to `package.json`.
+- Added MIT license and updated `README` and `package.json`.
 
 ## [1.0.0] - 2025-02-14
 ### Added
 - Initial commit.
-- Added MIT license and updated `README` and `package.json`.

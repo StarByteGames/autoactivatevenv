@@ -30,13 +30,7 @@ export function activate() {
         vscode.window.showInformationMessage('requirements.txt found! Would you like to install it?', 'Yes', 'No')
             .then(selection => {
                 if (selection === 'Yes') {
-                    const terminal = vscode.window.createTerminal('Requirements Installer');
-
-                    vscode.window.showInformationMessage('creating virtual environment and installing requirements...');
-                    sendCommandToTerminal(terminal, isWindows ? 'python -m venv .venv' : 'python3 -m venv .venv');
-                    sendCommandToTerminal(terminal, isWindows ? '.venv\\Scripts\\activate' : '.venv/bin/activate');
-                    sendCommandToTerminal(terminal, 'python -m pip install --upgrade pip');
-                    sendCommandToTerminal(terminal, 'pip install -r requirements.txt');
+                    installVenv(isWindows);
                 }
         });
     }
@@ -45,6 +39,18 @@ export function activate() {
         const config = vscode.workspace.getConfiguration('autoactivatevenv');
         activateVenvInTerminal(terminal, config.get<boolean>('clearScreen', true));
     });
+}
+
+function installVenv(isWindows: boolean) {
+    const terminal = vscode.window.createTerminal('Requirements Installer');
+
+    vscode.window.showInformationMessage('creating virtual environment and installing requirements...');
+    sendCommandToTerminal(terminal, isWindows ? 'python -m venv .venv' : 'python3 -m venv .venv');
+    sendCommandToTerminal(terminal, isWindows ? '.venv\\Scripts\\activate' : '.venv/bin/activate');
+    sendCommandToTerminal(terminal, 'python -m pip install --upgrade pip');
+    sendCommandToTerminal(terminal, 'pip install -r requirements.txt');
+
+    sendCommandToTerminal(terminal, 'exit');
 }
 
 function sendCommandToTerminal(terminal: vscode.Terminal, command: string) {
