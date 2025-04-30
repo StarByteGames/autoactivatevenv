@@ -3,7 +3,7 @@
 ## [1.6.0] - 2025-04-30
 ### Changed
 - Updated Change Log
-- Closing venv creation terminal
+- More info about Venv creation
 
 ## [1.5.1] - 2025-04-22
 ### Changed

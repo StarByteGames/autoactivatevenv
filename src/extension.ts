@@ -2,6 +2,7 @@ import * as vscode from 'vscode';
 import * as os from 'os';
 import * as path from 'path';
 import * as fs from 'fs';
+import { log } from 'console';
 
 export function activate() {
     const config = vscode.workspace.getConfiguration('autoactivatevenv');
@@ -42,19 +43,49 @@ export function activate() {
 }
 
 function installVenv(isWindows: boolean) {
-    const terminal = vscode.window.createTerminal('Requirements Installer');
+    vscode.window.withProgress({
+        location: vscode.ProgressLocation.Notification,
+        title: 'venv setup',
+        cancellable: false
+    }, async (progress) => {
+        const steps = [
+            { message: "Creating Terminal", command: null },
+            { message: "Creating virtual environment", command: isWindows ? 'python -m venv .venv' : 'python3 -m venv .venv' },
+            { message: "Activating virtual environment", command: isWindows ? '.venv\\Scripts\\activate' : '.venv/bin/activate' },
+            { message: "Upgrading pip", command: 'python -m pip install --upgrade pip' },
+            { message: "Installing requirements", command: 'pip install -r requirements.txt' },
+            { message: "Done", command: null }
+        ];
 
-    vscode.window.showInformationMessage('creating virtual environment and installing requirements...');
-    sendCommandToTerminal(terminal, isWindows ? 'python -m venv .venv' : 'python3 -m venv .venv');
-    sendCommandToTerminal(terminal, isWindows ? '.venv\\Scripts\\activate' : '.venv/bin/activate');
-    sendCommandToTerminal(terminal, 'python -m pip install --upgrade pip');
-    sendCommandToTerminal(terminal, 'pip install -r requirements.txt');
+        const totalSteps = steps.length;
+        const increment = 100 / totalSteps;
 
-    sendCommandToTerminal(terminal, 'exit');
+        const terminal = vscode.window.createTerminal('Requirements Installer');
+
+        for (let i = 0; i < steps.length; i++) {
+            const step = steps[i];
+            progress.report({ message: step.message, increment });
+
+            if (step.command) {
+                await sendCommandToTerminal(terminal, step.command);
+            }
+        }
+    });
 }
 
-function sendCommandToTerminal(terminal: vscode.Terminal, command: string) {
+async function sendCommandToTerminal(terminal: vscode.Terminal, command: string): Promise<void> {
+    return new Promise((resolve, reject) => {
         terminal.sendText(command);
+
+        const disposable = vscode.window.onDidEndTerminalShellExecution(
+            (event)=> {
+                if (event.exitCode === 0) {
+                    disposable.dispose();
+                    resolve();
+                }
+            }
+        );
+    });
 }
 
 // vsce package
