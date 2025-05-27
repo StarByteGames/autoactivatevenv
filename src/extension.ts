@@ -2,7 +2,6 @@ import * as vscode from 'vscode';
 import * as os from 'os';
 import * as path from 'path';
 import * as fs from 'fs';
-import { log } from 'console';
 
 export function activate() {
     const config = vscode.workspace.getConfiguration('autoactivatevenv');
@@ -74,7 +73,7 @@ function installVenv(isWindows: boolean) {
 }
 
 async function sendCommandToTerminal(terminal: vscode.Terminal, command: string): Promise<void> {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve, _) => {
         terminal.sendText(command);
 
         const disposable = vscode.window.onDidEndTerminalShellExecution(

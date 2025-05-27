@@ -1,9 +1,9 @@
 {
   "name": "autoactivatevenv",
-  "displayName": "AutoActivateVenv",
+  "displayName": "Auto Activate Venv",
   "description": "Automatically activates virtual environments (venv) when a workspace or folder is opened.",
   "version": "1.6.0",
-  "publisher": "DevStarByte",
+  "publisher": "StarByteGames",
   "icon": "images/AutoActivateVenv.png",
   "engines": {
     "vscode": "^1.97.0"
