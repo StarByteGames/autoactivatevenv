@@ -13,10 +13,10 @@ export function activate() {
         if (fs.existsSync(path.isAbsolute(venvPath) ? venvPath : path.join(vscode.workspace.workspaceFolders?.[0].uri.fsPath || '', venvPath))) {
             if (isWindows) {
                 sendCommandToTerminal(terminal, `${venvPath}\\Scripts\\activate`);
-                if (clearScreen) {sendCommandToTerminal(terminal, 'cls');}
+                if (clearScreen) { sendCommandToTerminal(terminal, 'cls'); }
             } else {
                 sendCommandToTerminal(terminal, `source ${venvPath}/bin/activate`);
-                if (clearScreen) {sendCommandToTerminal(terminal, 'clear');}
+                if (clearScreen) { sendCommandToTerminal(terminal, 'clear'); }
             }
         }
     };
@@ -25,15 +25,15 @@ export function activate() {
         activateVenvInTerminal(terminal, false);
     });
 
-    if (fs.existsSync(path.join(vscode.workspace.workspaceFolders?.[0].uri.fsPath || '', 'requirements.txt')) && 
+    if (fs.existsSync(path.join(vscode.workspace.workspaceFolders?.[0].uri.fsPath || '', 'requirements.txt')) &&
         !fs.existsSync(path.isAbsolute(venvPath) ? venvPath : path.join(vscode.workspace.workspaceFolders?.[0].uri.fsPath || '', venvPath))) {
-        
+
         vscode.window.showInformationMessage('requirements.txt found! Would you like to install it?', 'Yes', 'No')
             .then(selection => {
                 if (selection === 'Yes') {
                     installVenv(isWindows);
                 }
-        });
+            });
     }
 
     vscode.window.onDidOpenTerminal((terminal) => {
@@ -78,7 +78,7 @@ async function sendCommandToTerminal(terminal: vscode.Terminal, command: string)
         terminal.sendText(command);
 
         const disposable = vscode.window.onDidEndTerminalShellExecution(
-            (event)=> {
+            (event) => {
                 if (event.exitCode === 0) {
                     disposable.dispose();
                     resolve();
